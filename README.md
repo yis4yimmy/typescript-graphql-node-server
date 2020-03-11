@@ -1,7 +1,9 @@
 # typescript-graphql-node-server
+
 Boilerplate NodeJS server written in TypeScript, using Express, TypeORM, and Apollo GraphQL
 
 ## Tasks
+
 - [ ] Set up TypeORM & Postgres
 - [ ] Set up Jest
 - [ ] Migration to create the User's table

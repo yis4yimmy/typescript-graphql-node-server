@@ -1,0 +1,17 @@
+{
+  "name": "typescript-graphql-node-server",
+  "version": "0.0.1",
+  "description": "Boilerplate Node server, using TypeORM and GraphQL,  written in TypeScript.",
+  "main": "index.ts",
+  "repository": "https://github.com/yis4yimmy/typescript-graphql-node-server.git",
+  "author": "Jim Schuster <jim@schusie.net>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "prettier": "1.19.1",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.1.0",
+    "typescript": "^3.8.3"
+  }
+}
