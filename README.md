@@ -8,8 +8,8 @@ Boilerplate NodeJS server written in TypeScript, using Express, TypeORM, and Apo
 - [x] Migration to create the User's table
 - [x] Set up Apollo
 - [x] Allow users to register using email/password
-- [ ] Set up class-validator
-- [ ] Set up Jest
+- [x] Set up class-validator
+- [x] Set up Jest
 - [ ] Send registration confirmation emails
 - [ ] Set up sessions and Redis
 - [ ] Set up Passport.js
