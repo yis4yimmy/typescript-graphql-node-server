@@ -5,12 +5,13 @@ import {
   registerDecorator
 } from "class-validator";
 
-const uppercaseAlpha = "(?=.*[A-Z])";
-const lowercaseAlpha = "(?=.*[a-z])";
-const numeric = "(?=.*[0-9])";
 const allowedSpecialCharacters = "!@#$%^&*";
-const specialCharacter = `(?=.*[${allowedSpecialCharacters}])`;
-const strongPassword = new RegExp(
+const validCharacters = `[a-zA-Z0-9${allowedSpecialCharacters}]`;
+const uppercaseAlpha = `(?=${validCharacters}*[A-Z])`;
+const lowercaseAlpha = `(?=${validCharacters}*[a-z])`;
+const numeric = `(?=${validCharacters}*[0-9])`;
+const specialCharacter = `(?=${validCharacters}*[${allowedSpecialCharacters}])`;
+export const strongPassword = new RegExp(
   `^(${lowercaseAlpha}${uppercaseAlpha}${numeric})|(${lowercaseAlpha}${uppercaseAlpha}${specialCharacter})|(${lowercaseAlpha}${uppercaseAlpha}${numeric}${specialCharacter})`
 );
 
