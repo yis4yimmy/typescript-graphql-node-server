@@ -746,7 +746,7 @@ chownr@^1.1.1:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
   integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
 
-class-validator@>=0.9.1:
+class-validator@>=0.9.1, class-validator@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.11.0.tgz#5fca8b8a957c738a6749391e03ee81fad375dc4a"
   integrity sha512-niAmmSPFku9xsnpYYrddy8NZRrCX3yyoZ/rgPKOilE5BG0Ma1eVCIxpR4X0LasL/6BzbYzsutG+mSbAXlh4zNw==
