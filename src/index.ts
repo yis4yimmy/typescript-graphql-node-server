@@ -25,8 +25,7 @@ class HelloResolver {
   const app = express();
 
   const schema = await buildSchema({
-    resolvers: [HelloResolver, RegisterResolver],
-    validate: false
+    resolvers: [HelloResolver, RegisterResolver]
   });
 
   const server = new ApolloServer({ schema });
