@@ -4,18 +4,24 @@ import {
   Column,
   Index,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  BaseEntity
 } from "typeorm";
+import { ObjectType, Field, ID } from "type-graphql";
 
+@ObjectType()
 @Entity("users")
-export class User {
+export class User extends BaseEntity {
+  @Field(() => ID)
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Field()
   @Column({ type: "varchar", length: 255, unique: true })
   @Index({ unique: true })
   username: string;
 
+  @Field()
   @Column({ type: "varchar", length: 255, unique: true })
   @Index({ unique: true })
   email: string;
@@ -29,9 +35,11 @@ export class User {
   @Column({ default: false })
   locked: boolean;
 
+  @Field()
   @CreateDateColumn({ type: "timestamp with time zone" })
   createdAt: Date;
 
+  @Field()
   @UpdateDateColumn({ type: "timestamp with time zone" })
   updatedAt: Date;
 }

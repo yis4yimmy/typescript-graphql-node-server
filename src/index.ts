@@ -3,6 +3,7 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import { buildSchema, Resolver, Query } from "type-graphql";
 import { createConnection } from "typeorm";
+import { RegisterResolver } from "./authentication/Register";
 
 @Resolver()
 class HelloResolver {
@@ -23,7 +24,10 @@ class HelloResolver {
 
   const app = express();
 
-  const schema = await buildSchema({ resolvers: [HelloResolver] });
+  const schema = await buildSchema({
+    resolvers: [HelloResolver, RegisterResolver],
+    validate: false
+  });
 
   const server = new ApolloServer({ schema });
 
