@@ -2,7 +2,7 @@
   "name": "typescript-graphql-node-server",
   "version": "0.0.1",
   "description": "Boilerplate Node server, using TypeORM and GraphQL,  written in TypeScript.",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "repository": "https://github.com/yis4yimmy/typescript-graphql-node-server.git",
   "author": "Jim Schuster <jim@schusie.net>",
   "license": "MIT",
@@ -20,5 +20,8 @@
     "pg": "^7.18.2",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.24"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts"
   }
 }
