@@ -4,13 +4,15 @@ Boilerplate NodeJS server written in TypeScript, using Express, TypeORM, and Apo
 
 ## Tasks
 
-- [ ] Set up TypeORM & Postgres
+- [x] Set up TypeORM & Postgres
+- [x] Migration to create the User's table
+- [x] Set up Apollo
+- [x] Allow users to register using email/password
+- [ ] Set up class-validator
 - [ ] Set up Jest
-- [ ] Migration to create the User's table
-- [ ] Set up Apollo
-- [ ] Set up Passport.js
-- [ ] Allow users to register using email/password
 - [ ] Send registration confirmation emails
+- [ ] Set up sessions and Redis
+- [ ] Set up Passport.js
 - [ ] Allow users to log in
 - [ ] Allow users to log out
 - [ ] Allow users to register using OAuth
