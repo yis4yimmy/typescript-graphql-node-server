@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
@@ -14,6 +15,8 @@ class HelloResolver {
 }
 
 (async function() {
+  dotenv.config();
+
   createConnection()
     .then(_connection => {
       console.log("Created a connection");
@@ -32,7 +35,9 @@ class HelloResolver {
 
   server.applyMiddleware({ app });
 
-  app.listen({ port: 4000 }, () => {
-    console.log("Server running at http://localhost:4000/graphql");
+  const { HOST_URL, PORT, NODE_ENV } = process.env;
+
+  app.listen({ port: PORT }, () => {
+    console.log(`Running a ${NODE_ENV} server at ${HOST_URL}:${PORT}/graphql`);
   });
 })();
