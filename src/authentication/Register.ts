@@ -1,7 +1,10 @@
 import argon2 from "argon2";
+import nodemailer from "nodemailer";
 import { Resolver, Mutation, Arg } from "type-graphql";
 import { RegisterInput } from "./RegisterInput";
 import { User } from "../entity/User";
+import { sendMail } from "../services/sendMail";
+import { confirmEmail } from "./mailers/confirmEmail";
 
 @Resolver()
 export class RegisterResolver {
@@ -17,6 +20,15 @@ export class RegisterResolver {
       password: hashedPassword
     });
     const result = await user.save();
+
+    const confirmationEmail = await confirmEmail({
+      userId: user.id,
+      userEmail: user.email
+    });
+
+    const sentMessageInfo = await sendMail(confirmationEmail);
+
+    console.log("Email url ", nodemailer.getTestMessageUrl(sentMessageInfo));
 
     return result;
   }
