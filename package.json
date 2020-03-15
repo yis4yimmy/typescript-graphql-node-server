@@ -44,6 +44,8 @@
   },
   "scripts": {
     "start": "ts-node-dev --respawn src/index.ts",
+    "pretest": "ts-node ./src/test-utils/globalSetup.ts",
+    "posttest": "ts-node ./src/test-utils/globalTeardown.ts",
     "test": "jest",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   }
