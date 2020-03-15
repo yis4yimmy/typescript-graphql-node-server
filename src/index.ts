@@ -2,18 +2,8 @@ import dotenv from "dotenv";
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
-import { buildSchema, Resolver, Query } from "type-graphql";
 import { createConnection } from "typeorm";
-import { RegisterResolver } from "./authentication/Register";
-import { ConfirmEmailResolver } from "./authentication/ConfirmEmail";
-
-@Resolver()
-class HelloResolver {
-  @Query(() => String)
-  async hello() {
-    return "Hello, world!";
-  }
-}
+import { graphqlSchema } from "./services/graphqlSchema";
 
 (async function() {
   dotenv.config();
@@ -28,9 +18,7 @@ class HelloResolver {
 
   const app = express();
 
-  const schema = await buildSchema({
-    resolvers: [HelloResolver, RegisterResolver, ConfirmEmailResolver]
-  });
+  const schema = await graphqlSchema;
 
   const server = new ApolloServer({ schema });
 
