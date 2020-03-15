@@ -1,3 +1,4 @@
+import { Redis } from "ioredis";
 import { EmailParams } from "../../services/sendMail";
 import { createConfirmEmailIUrl } from "../createConfirmEmailUrl";
 
@@ -7,11 +8,15 @@ interface ConfirmEmailParams {
 }
 
 export const confirmEmail = async (
-  confirmEmailParams: ConfirmEmailParams
+  confirmEmailParams: ConfirmEmailParams,
+  redisClient: Redis
 ): Promise<EmailParams> => {
   const { userId, userEmail } = confirmEmailParams;
 
-  const confirmEmailUrl = await createConfirmEmailIUrl({ id: userId });
+  const confirmEmailUrl = await createConfirmEmailIUrl(
+    { id: userId },
+    redisClient
+  );
 
   const text = `Thank you for registering with App. Before you can start using your account, we need to confirm your email. Please follow this link to verify your email address: ${confirmEmailUrl}`;
 

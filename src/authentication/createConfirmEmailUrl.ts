@@ -1,12 +1,13 @@
 import { v4 as generateV4Uuid } from "uuid";
-import { redisClient } from "../services/redis";
+import { Redis } from "ioredis";
 
 interface ConfirmEmailParams {
   id: string;
 }
 
 export const createConfirmEmailIUrl = async (
-  params: ConfirmEmailParams
+  params: ConfirmEmailParams,
+  redisClient: Redis
 ): Promise<string | Error> => {
   const { HOST_URL, PORT } = process.env;
   const { id: userId } = params;

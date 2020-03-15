@@ -15,13 +15,17 @@ describe("createConfirmEmailUrl", () => {
     redisClientSpy.mockRestore();
   });
 
+  afterAll(() => {
+    redisClient.disconnect();
+  });
+
   describe("failed url creation", () => {
     let result: string | Error;
 
     beforeEach(async () => {
       redisClientSpy.mockImplementationOnce(() => "Error");
 
-      result = await createConfirmEmailIUrl({ id: userId });
+      result = await createConfirmEmailIUrl({ id: userId }, redisClient);
     });
 
     it("sets the token and userId in Redis with an 86400 second expiry time", () => {
@@ -41,7 +45,7 @@ describe("createConfirmEmailUrl", () => {
     beforeEach(async () => {
       redisClientSpy.mockImplementationOnce(() => "OK");
 
-      result = await createConfirmEmailIUrl({ id: userId });
+      result = await createConfirmEmailIUrl({ id: userId }, redisClient);
     });
 
     it("sets the token and userId in Redis with an 86400 second expiry time", () => {

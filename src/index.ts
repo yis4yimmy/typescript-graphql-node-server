@@ -4,6 +4,7 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import { createConnection } from "typeorm";
 import { graphqlSchema } from "./services/graphqlSchema";
+import { redisClient } from "./services/redis";
 
 (async function() {
   dotenv.config();
@@ -20,7 +21,7 @@ import { graphqlSchema } from "./services/graphqlSchema";
 
   const schema = await graphqlSchema;
 
-  const server = new ApolloServer({ schema });
+  const server = new ApolloServer({ schema, context: { redisClient } });
 
   server.applyMiddleware({ app });
 

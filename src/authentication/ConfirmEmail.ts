@@ -1,11 +1,16 @@
-import { Resolver, Mutation, Arg } from "type-graphql";
-import { redisClient } from "../services/redis";
+import { Resolver, Mutation, Arg, Ctx } from "type-graphql";
 import { User } from "../entity/User";
+import { AppContext } from "../types/AppContext";
 
 @Resolver()
 export class ConfirmEmailResolver {
   @Mutation(() => Boolean)
-  async confirmEmail(@Arg("token") token: string): Promise<boolean> {
+  async confirmEmail(
+    @Arg("token") token: string,
+    @Ctx() ctx: AppContext
+  ): Promise<boolean> {
+    const { redisClient } = ctx;
+
     const userId = await redisClient.get(token);
 
     if (!userId) {
