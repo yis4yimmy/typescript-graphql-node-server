@@ -17,6 +17,7 @@
     "@types/nodemailer": "^6.4.0",
     "@types/uuid": "^7.0.0",
     "apollo-server-testing": "^2.11.0",
+    "apollo-server-types": "^0.3.0",
     "graphql-tag": "^2.10.3",
     "jest": "^25.1.0",
     "prettier": "1.19.1",
