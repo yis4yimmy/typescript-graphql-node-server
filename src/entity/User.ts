@@ -42,4 +42,13 @@ export class User extends BaseEntity {
   @Field()
   @UpdateDateColumn({ type: "timestamp with time zone" })
   updatedAt: Date;
+
+  static findOneByEmailOrUsername(emailOrUsername: string) {
+    return this.createQueryBuilder("user")
+      .where(
+        "user.email = :emailOrUsername OR user.username = :emailOrUsername",
+        { emailOrUsername }
+      )
+      .getOne();
+  }
 }
