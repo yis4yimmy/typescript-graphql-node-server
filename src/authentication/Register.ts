@@ -35,7 +35,9 @@ export class RegisterResolver {
 
     const sentMessageInfo = await sendMail(confirmationEmail);
 
-    console.log("Email url ", nodemailer.getTestMessageUrl(sentMessageInfo));
+    if (process.env.NODE_ENV === "development") {
+      console.log("Email url ", nodemailer.getTestMessageUrl(sentMessageInfo));
+    }
 
     return result;
   }
