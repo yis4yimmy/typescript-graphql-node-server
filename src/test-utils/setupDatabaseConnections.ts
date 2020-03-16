@@ -1,7 +1,8 @@
 import {
-  getConnection,
   getConnectionManager,
-  ConnectionOptions
+  ConnectionOptions,
+  Connection,
+  BaseEntity
 } from "typeorm";
 import { EntityFactory } from "@entity-factory/core";
 import { TypeormAdapter } from "@entity-factory/typeorm";
@@ -24,12 +25,16 @@ const connectionOptions: ConnectionOptions = {
   cli: { migrationsDir: "src/migration" }
 };
 
+let connection: Connection;
+
 let factory: EntityFactory;
 
 beforeAll(async () => {
   const connectionManager = getConnectionManager();
-  const connection = connectionManager.create(connectionOptions);
+  connection = connectionManager.create(connectionOptions);
   await connection.connect();
+
+  BaseEntity.useConnection(connection);
 
   const adapter: TypeormAdapter = new TypeormAdapter(connectionOptions);
   factory = new EntityFactory({
@@ -40,7 +45,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   redisClient.disconnect();
-  await getConnection(connectionName).close();
+  await connection.close();
 });
 
-export { factory, redisClient };
+export { connection, factory, redisClient };
