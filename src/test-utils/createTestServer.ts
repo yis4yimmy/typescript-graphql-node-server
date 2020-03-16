@@ -4,7 +4,10 @@ import { redisClient } from "./setupDatabaseConnections";
 
 export const createTestServer = async () => {
   const schema = await graphqlSchema;
-  const testServer = new ApolloServer({ schema, context: { redisClient } });
+  const testServer = new ApolloServer({
+    schema,
+    context: ({ req, res }) => ({ redisClient, req, res })
+  });
 
   return testServer;
 };
