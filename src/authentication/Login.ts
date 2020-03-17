@@ -17,6 +17,14 @@ export class LoginResolver {
       return false;
     }
 
+    if (!user.verified) {
+      return false;
+    }
+
+    if (user.locked) {
+      return false;
+    }
+
     let validPassword: boolean = false;
     try {
       validPassword = await argon2.verify(user.password, password);
@@ -26,10 +34,6 @@ export class LoginResolver {
     }
 
     if (!validPassword) {
-      return false;
-    }
-
-    if (!user.verified) {
       return false;
     }
 
