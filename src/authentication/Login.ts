@@ -17,7 +17,13 @@ export class LoginResolver {
       return false;
     }
 
-    const validPassword = await argon2.verify(user.password, password);
+    let validPassword: boolean = false;
+    try {
+      validPassword = await argon2.verify(user.password, password);
+    } catch (error) {
+      console.log("Password validation error: ", error);
+      return false;
+    }
 
     if (!validPassword) {
       return false;
