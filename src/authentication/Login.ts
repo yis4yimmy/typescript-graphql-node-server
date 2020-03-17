@@ -29,7 +29,9 @@ export class LoginResolver {
     try {
       validPassword = await argon2.verify(user.password, password);
     } catch (error) {
-      console.log("Password validation error: ", error);
+      if (process.env.NODE_ENV === "development") {
+        console.log("Password validation error: ", error);
+      }
       return false;
     }
 
