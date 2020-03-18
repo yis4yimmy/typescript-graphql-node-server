@@ -14,7 +14,7 @@ Boilerplate NodeJS server written in TypeScript, using Express, TypeORM, and Apo
 - [x] Set up sessions and Redis
 - [x] Allow users to log in
 - [x] Allow users to log out
-- [ ] Set up Passport.js
-- [ ] Allow users to register using OAuth
 - [ ] Allow users to reset their password
 - [ ] Allow users to edit their profile (email, username)
+- [ ] Set up Passport.js
+- [ ] Allow users to register using OAuth
